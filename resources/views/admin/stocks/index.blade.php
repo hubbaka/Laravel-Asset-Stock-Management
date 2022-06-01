@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($stocks as $key => $stock)
+                    @foreach($stocks as $stock)
                         <tr>
                             <td>
                                 {{ $stock->asset->name ?? '' }}
@@ -97,8 +97,6 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection
 @section('scripts')

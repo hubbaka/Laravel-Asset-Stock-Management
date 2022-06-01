@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\StocksController;
+use App\Stock;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -51,4 +54,10 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('password', 'ChangePasswordController@update')->name('password.update');
     }
 
+});
+
+Route::get('/stockall', function() {
+    return view('stockall', [
+        'stocks' => Stock::all(),
+    ]);
 });

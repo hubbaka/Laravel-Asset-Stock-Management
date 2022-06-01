@@ -10,7 +10,7 @@ use \DateTimeInterface;
 
 class Stock extends Model
 {
-    use SoftDeletes, MultiTenantModelTrait, HasFactory;
+    use SoftDeletes, HasFactory;
 
     public $table = 'stocks';
 

@@ -64,6 +64,14 @@
                     </a>
                 </li>
             @endcan
+            <li class="nav-item">
+                <a href="/stockall" class="nav-link">
+                    <i class="fa-fw fas fa-cogs nav-icon">
+                        
+                    </i>
+                    Stock All
+                </a>
+            </li>
             @can('stock_access')
                 <li class="nav-item">
                     <a href="{{ route("admin.stocks.index") }}" class="nav-link {{ request()->is('admin/stocks') || request()->is('admin/stocks/*') ? 'active' : '' }}">

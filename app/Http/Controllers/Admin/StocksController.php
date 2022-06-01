@@ -11,14 +11,20 @@ use App\Stock;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Auth;
 
 class StocksController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('stock_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $stocks = Stock::all();
+        // abort_if(Gate::denies('stock_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $user = Auth::user()->team_id;
+        if ($user != null) {
+            $stocks = Stock::where('team_id', '=', Auth::user()->team_id)->get();
+        } else {
+            $stocks = Stock::all();
+        }
+        
 
         return view('admin.stocks.index', compact('stocks'));
     }
@@ -84,5 +90,10 @@ class StocksController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
 
+    }
+
+    public function stockAll(){
+        $stocks = Stock::all();
+        return view('stockall', compact('stocks'));
     }
 }
